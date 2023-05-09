@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  pharmacy-recommendation-redis:
+    container_name: pharmacy-recommendation-redis
+    build:
+      dockerfile: Dockerfile
+      context: ./redis
+    image: jiseongtak/pharmacy-recommendation-redis
+    ports:
+      - "6379:6379"
+  pharmacy-recommendation-database:
+    container_name: pharmacy-recommendation-database
+    build:
+      dockerfile: Dockerfile
+      context: ./database
+    image: jiseongtak/pharmacy-recommendation-database
+    environment:
+      MARIADB_DATABASE: pharmacy-recommendation
+      MARIADB_ROOT_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+    volumes:
+      - ./database/config:/etc/mysql/conf.d
+    ports:
+      - "13306:3306" # localhost에서 기존에 mariadb를 3306으로 사용하고 있어서 13306으로 변경
