@@ -19,5 +19,7 @@ services:
       MARIADB_ROOT_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
     volumes:
       - ./database/config:/etc/mysql/conf.d
+      - ./database/init:/docker-entrypoint-initdb.d
     ports:
+      # 접근 포트 설정 (컨테이너 외부:컨테이너 내부)
       - "13306:3306" # localhost에서 기존에 mariadb를 3306으로 사용하고 있어서 13306으로 변경
