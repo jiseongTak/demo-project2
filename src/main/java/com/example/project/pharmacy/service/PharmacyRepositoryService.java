@@ -26,4 +26,16 @@ public class PharmacyRepositoryService {
 
         entity.changePharmacyAddress(address);
     }
+
+    // for test
+    public void updateAddressWithoutTransaction(Long id, String address) {
+        Pharmacy entity = pharmacyRepository.findById(id).orElse(null);
+
+        if(Objects.isNull(entity)) {
+            log.error("[PharmacyRepositoryService updateAddress] not found id: {}", id);
+            return;
+        }
+
+        entity.changePharmacyAddress(address);
+    }
 }
