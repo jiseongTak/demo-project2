@@ -20,7 +20,7 @@ public class PharmacySearchService {
         // redis
 
         // db
-        return (List<PharmacyDto>) pharmacyRepositoryService.findAll()
+        return pharmacyRepositoryService.findAll()
                 .stream().map(this::convertToPharmacyDto)
                 .collect(Collectors.toList());
     }
