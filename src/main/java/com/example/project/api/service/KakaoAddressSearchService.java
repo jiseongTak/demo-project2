@@ -33,7 +33,6 @@ public class KakaoAddressSearchService {
             backoff = @Backoff(delay = 2)
     )
     public KakaoApiResponseDto requestAddressSearch(String address) {
-
         if (ObjectUtils.isEmpty(address)) {
             return null;
         }
